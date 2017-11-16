@@ -1,15 +1,10 @@
 
 <?php
   function conexion(){
-
-    $con = mysql_connect(“localhost”,”root”,”root”);
-
-    if (!$con){
-        die(‘Could not connect: ‘ . mysql_error());
+    $link = new mysqli("localhost","root","root","BDUsuarios");
+    if (mysqli_connect_errno()) {
+        die("Error al conectar: ".mysqli_connect_error());
     }
-echo 'Conectado satisfactoriamente';
-    mysql_select_db(“EDITABORRA”, $con);
-
-    return($con);
+    return($link);
   }
 ?>

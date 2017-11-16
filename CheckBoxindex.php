@@ -1,10 +1,9 @@
 <?php
 
-  $link = new mysqli("localhost","root","root","EDITABORRA");
-  if (mysqli_connect_errno()) {
-      die("Error al conectar: ".mysqli_connect_error());
-  }
-  $result = mysqli_query($link, "SELECT * FROM menu");
+  include 'conexion.php';
+  /* Uso a modo de función */
+  $link = conexion();
+  $result = mysqli_query($link, "SELECT * FROM Usuarios");
 
 ?>
 
@@ -12,35 +11,33 @@
 <html>
 <body>
 
-<h1>Eliminar datos</h1>
-<!-- https://stips.wordpress.com/2014/03/13/eliminar-multiples-datos-con-checkbox-php-y-mysql/ -->
-<form method="post" action="eliminar.php">
+<h1>Actualizar datos</h1>
+<form method="post" action="actualizar.php">
 
 <table border="1">
 
   <tr>
   <th></th>
-  <th>androidID</th>
-  <th>texto</th>
+  <th>Email</th>
+  <th>Activo</th>
   </tr>
 
 <?php
 #while($fila=mysql_fetch_array($res)){
 while (($fila = mysqli_fetch_array($result))!=NULL){
-  $valor=$fila[activo];
 ?>
   <tr>
-  <th><input type="checkbox" name="casilla[]" value="<?php echo $fila[activo]; ?>" <?php if ($fila[activo] == 1){
+  <th><input type="checkbox" name="casilla[]" value="<?php echo $fila[email]; ?>" <?php if ($fila[activo] == 1){
       echo "checked='checked'";
     } ?>  > </th>
-  <th><?php echo $fila[androidID]; ?></th>
-  <th><?php echo $fila[texto]; ?></th>
+  <th><?php echo $fila[email]; ?></th>
+  <th><?php echo $fila[activo]; ?></th>
   </tr>
 <?php
 }
 ?>
 </table>
-<input type="submit" value="Eliminar" />
+<input type="submit" value="Actualizar" />
 </form>
 
 </body>
