@@ -1,12 +1,17 @@
 <?php
 
   include 'conexion.php';
-
-  /* Uso a modo de función */
-  $link = conexion();
+  $link = conexion(); /* Uso a modo de función */
 
   var_dump ($EmailCheckbox = $_POST[casilla]);
 
+  /* Inicializamos a 0 el campo activo antes de reescribir los que están a 1 en el checkbox */
+  $sql = "UPDATE Usuarios SET activo = 0";
+  if(mysqli_query($link, $sql)){
+      echo "Los registros se inicializaron perfectamente.";
+    } else {
+            echo "ERROR: No se pudo ejecutar $sql. " . mysqli_error($link);
+  } /* End if */
 
   foreach ($EmailCheckbox as $Email){
 
