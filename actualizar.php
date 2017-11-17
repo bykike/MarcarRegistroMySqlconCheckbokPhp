@@ -20,21 +20,28 @@
 
     if(mysqli_query($link, $sql)){
         echo "Los registros se grabaron perfectamente.";
-    } else {
-        echo "ERROR: No se pudo ejecutar $sql. " . mysqli_error($link);
-    } /* End foreach */
+        } else {
+            echo "ERROR: No se pudo ejecutar $sql. " . mysqli_error($link);
+            } 
 
-}
+} /* End foreach */
 
+  echo "<br>";
+  var_dump ($BorrarEmailCheckbox = $_POST[borrado]);
 
-/* con este procedimiento borramos todas las seleccionadas
-foreach ($x as $value){
-  $res=mysql_query(“delete from menu where email=”.$value.””,$link);
-  if($res){
-          echo ‘Dato eliminado correctamente<br />’;
-        }
-}
-*/
+  /* Borramos todas las seleccionadas */
+  foreach ($BorrarEmailCheckbox as $EmailBorrado){
+
+    $sql = "DELETE FROM Usuarios WHERE email='$EmailBorrado'";
+    echo $sql;
+
+    if(mysqli_query($link, $sql)){
+        echo "Los registros se borraron perfectamente.";
+      } else {
+              echo "ERROR: No se pudo ejecutar $sql. " . mysqli_error($link);
+              } /* End foreach */
+
+  }
 
 ?>
 
