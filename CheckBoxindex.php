@@ -12,7 +12,7 @@
 <body>
 <h1>Actualizar datos</h1>
 
-<form method="post" action="actualizar.php">
+<form method="post" action="actualizar.php" onsubmit="return confirmation()">
 
   <table border="1">
 
@@ -46,6 +46,16 @@
 
 
 </form>
+
+<script type="text/javascript">
+    function confirmation() {
+        if(confirm("Realmente desea eliminar?"))
+        {
+            return true;
+        }
+        return false;
+    }
+</script>
 
 </body>
 </html>
